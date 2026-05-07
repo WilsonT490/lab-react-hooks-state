@@ -16,14 +16,17 @@ function App() {
   const [cart, setCart] = useState([]);
   const [category, setCategory] = useState("All");
 
+  // Toggle dark mode
   function toggleDarkMode() {
     setDarkMode(!darkMode);
   }
 
+  // Add item to cart
   function addToCart(product) {
     setCart([...cart, product]);
   }
 
+  // Filter products
   const filteredProducts =
     category === "All"
       ? products
@@ -40,20 +43,27 @@ function App() {
         toggleDarkMode={toggleDarkMode}
       />
 
+      {/* Category Filter */}
       <select
+        value={category}
         onChange={(e) => setCategory(e.target.value)}
       >
         <option value="All">All</option>
         <option value="Dairy">Dairy</option>
         <option value="Fruit">Fruit</option>
         <option value="Bakery">Bakery</option>
+
+        {/* Extra option for testing */}
+        <option value="Vegetables">Vegetables</option>
       </select>
 
+      {/* Product List */}
       <ProductList
         products={filteredProducts}
         addToCart={addToCart}
       />
 
+      {/* Cart */}
       <Cart cart={cart} />
     </div>
   );
